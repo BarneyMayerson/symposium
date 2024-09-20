@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         User::factory()
             ->has(Talk::factory()->count(5))
             ->create([
-                'name' => 'Barney Nayerson',
+                'name' => 'Barney Mayerson',
                 'email' => 'mr.barney.mayerson@gmail.com',
             ]);
 
