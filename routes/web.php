@@ -20,10 +20,10 @@ Route::middleware('auth')->group(function () {
     Route::get('talks', [TalkController::class, 'index'])->name('talks.index');
     Route::get('talks/create', [TalkController::class, 'create'])->name('talks.create');
     Route::post('talks', [TalkController::class, 'store'])->name('talks.store');
-    Route::get('talks/{talk}', [TalkController::class, 'show'])->name('talks.show');
-    Route::get('talks/{talk}/edit', [TalkController::class, 'edit'])->name('talks.edit');
-    Route::patch('talks/{talk}', [TalkController::class, 'update'])->name('talks.update');
-    Route::delete('talks/{talk}', [TalkController::class, 'destroy'])->name('talks.delete');
+    Route::get('talks/{talk}', [TalkController::class, 'show'])->can('view', 'talk')->name('talks.show');
+    Route::get('talks/{talk}/edit', [TalkController::class, 'edit'])->can('edit', 'talk')->name('talks.edit');
+    Route::patch('talks/{talk}', [TalkController::class, 'update'])->can('update', 'talk')->name('talks.update');
+    Route::delete('talks/{talk}', [TalkController::class, 'destroy'])->can('delete', 'talk')->name('talks.delete');
 });
 
 require __DIR__ . '/auth.php';

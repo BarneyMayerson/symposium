@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Enums\TalkType;
 use App\Models\Talk;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
@@ -50,10 +49,6 @@ class TalkController extends Controller
      */
     public function show(Talk $talk)
     {
-        if (Auth::id() !== $talk->user_id) {
-            abort(Response::HTTP_FORBIDDEN);
-        }
-
         return view('talks.show', [
             'talk' => $talk,
         ]);
@@ -72,10 +67,6 @@ class TalkController extends Controller
      */
     public function update(Request $request, Talk $talk)
     {
-        if (Auth::id() !== $talk->user_id) {
-            abort(Response::HTTP_FORBIDDEN);
-        }
-
         $validated = $request->validate([
             'title' => 'required|max:255',
             'length' => 'required',
@@ -94,9 +85,7 @@ class TalkController extends Controller
      */
     public function destroy(Talk $talk)
     {
-        if ($talk->user_id === Auth::id()) {
-            $talk->delete();
-        }
+        $talk->delete();
 
         return redirect()->route('talks.index');
     }
