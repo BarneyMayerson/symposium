@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             ->has(Talk::factory()->count(5))
             ->create([
                 'name' => 'Barney Mayerson',
-                'email' => 'mr.barney.mayerson@gmail.com',
+                'email' => 'fake@gmail.com',
             ]);
 
         Conference::factory()->count(3)->create();
