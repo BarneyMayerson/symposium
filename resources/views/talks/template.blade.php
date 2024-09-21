@@ -23,7 +23,7 @@
             >
                 @foreach (App\Enums\TalkType::cases() as $talkType)
                     <option value="{{ $talkType }}" @selected($talkType === old('type', $talk->type))>
-                        {{ $talkType }}
+                        {{ ucfirst($talkType->value) }}
                     </option>
                 @endforeach
             </select>
